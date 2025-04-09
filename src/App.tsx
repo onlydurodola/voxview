@@ -93,16 +93,16 @@ function App() {
       title: "General Questions",
       questions: [
         {
-          question: "What is voxvu?",
-          answer: "voxvu is an AI-driven interview preparation platform that simulates realistic human interviews using advanced avatars. It provides real-time feedback on your responses, helping you improve your interview skills and boost your confidence."
+          question: "What is Voxview?",
+          answer: "Voxview is an AI-driven interview preparation platform that simulates realistic human interviews using advanced avatars. It provides real-time feedback on your responses, helping you improve your interview skills and boost your confidence."
         },
         {
-          question: "How does voxvu work?",
-          answer: "voxvu uses artificial intelligence to create lifelike interview scenarios. Users engage with a realistic avatar that asks industry-specific questions. The platform analyzes your verbal and non-verbal responses, offering instant feedback to enhance your performance."
+          question: "How does Voxview work?",
+          answer: "Voxview uses artificial intelligence to create lifelike interview scenarios. Users engage with a realistic avatar that asks industry-specific questions. The platform analyzes your verbal and non-verbal responses, offering instant feedback to enhance your performance."
         },
         {
-          question: "Who can benefit from using voxvu?",
-          answer: "Job seekers at all levels, from recent graduates to seasoned professionals, can benefit from voxvu. It's also useful for individuals preparing for public speaking engagements or anyone looking to improve their communication skills."
+          question: "Who can benefit from using Voxview?",
+          answer: "Job seekers at all levels, from recent graduates to seasoned professionals, can benefit from Voxview. It's also useful for individuals preparing for public speaking engagements or anyone looking to improve their communication skills."
         }
       ]
     },
@@ -110,16 +110,16 @@ function App() {
       title: "Features and Functionality",
       questions: [
         {
-          question: "What types of interviews can I practice with voxvu?",
-          answer: "voxvu offers practice sessions for various interview types, including behavioral, technical, and case interviews. You can select the interview style that aligns with your preparation needs."
+          question: "What types of interviews can I practice with Voxview?",
+          answer: "Voxview offers practice sessions for various interview types, including behavioral, technical, and case interviews. You can select the interview style that aligns with your preparation needs."
         },
         {
-          question: "Does voxvu provide feedback on my performance?",
-          answer: "Yes, after each session, voxvu provides detailed feedback on aspects such as speech clarity, content relevance, body language, and eye contact. This helps you identify strengths and areas for improvement."
+          question: "Does Voxview provide feedback on my performance?",
+          answer: "Yes, after each session, Voxview provides detailed feedback on aspects such as speech clarity, content relevance, body language, and eye contact. This helps you identify strengths and areas for improvement."
         },
         {
           question: "Can I customize the interview questions?",
-          answer: "Absolutely. voxvu allows you to input specific job descriptions or select particular competencies you wish to focus on, tailoring the interview questions to your requirements."
+          answer: "Absolutely. Voxview allows you to input specific job descriptions or select particular competencies you wish to focus on, tailoring the interview questions to your requirements."
         }
       ]
     },
@@ -127,7 +127,7 @@ function App() {
       title: "Technical Requirements",
       questions: [
         {
-          question: "Do I need any special equipment to use voxvu?",
+          question: "Do I need any special equipment to use Voxview?",
           answer: "You'll need a device with a camera and microphone, such as a laptop, tablet, or smartphone, to fully engage with the platform and receive comprehensive feedback."
         },
         {
@@ -135,8 +135,8 @@ function App() {
           answer: "Yes, a stable internet connection is necessary to interact with the AI avatar and access real-time feedback features."
         },
         {
-          question: "Is voxvu compatible with all operating systems?",
-          answer: "voxvu is a web-based platform accessible through most modern web browsers, making it compatible with various operating systems, including Windows, macOS, iOS, and Android."
+          question: "Is Voxview compatible with all operating systems?",
+          answer: "Voxview is a web-based platform accessible through most modern web browsers, making it compatible with various operating systems, including Windows, macOS, iOS, and Android."
         }
       ]
     }
@@ -162,7 +162,7 @@ function App() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <Bot className="h-8 w-8 text-blue-600" />
-              <span className={`ml-2 text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>voxvu</span>
+              <span className={`ml-2 text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Voxview</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <a href="#features" className={`${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}>Features</a>
@@ -235,7 +235,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInWhenVisible>
             <h2 className={`text-3xl font-bold text-center mb-16 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-              Why Choose voxvu?
+              Why Choose Voxview?
             </h2>
             <div className="grid md:grid-cols-3 gap-12">
               {benefits.map((benefit, index) => (
@@ -259,7 +259,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInWhenVisible>
             <h2 className={`text-3xl font-bold text-center mb-16 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-              How voxvu Works
+              How Voxview Works
             </h2>
             <div className="grid md:grid-cols-3 gap-12">
               {howItWorks.map((step, index) => (
@@ -332,7 +332,7 @@ function App() {
           <FadeInWhenVisible>
             <div className="text-center max-w-3xl mx-auto">
               <h2 className={`text-3xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                Be Among the First to Experience voxvu
+                Be Among the First to Experience Voxview
               </h2>
               <p className={`mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 Join our exclusive waitlist to get early access and special launch pricing. 
@@ -381,7 +381,7 @@ function App() {
             <div>
               <div className="flex items-center mb-4">
                 <Bot className="h-8 w-8" />
-                <span className="ml-2 text-xl font-bold">voxvu</span>
+                <span className="ml-2 text-xl font-bold">Voxview</span>
               </div>
               <p className="text-gray-400">Empowering job seekers with AI-powered interview preparation.</p>
             </div>
@@ -403,7 +403,7 @@ function App() {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-            <p>&copy; {new Date().getFullYear()} voxvu. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Voxview. All rights reserved.</p>
           </div>
         </div>
       </footer>
@@ -430,7 +430,7 @@ function App() {
               Join the Waitlist
             </h3>
             <p className={`mb-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-              Be among the first to experience voxvu and get exclusive early access benefits.
+              Be among the first to experience Voxview and get exclusive early access benefits.
             </p>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
