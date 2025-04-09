@@ -4,16 +4,21 @@ import { useInView } from 'react-intersection-observer';
 import { useForm, ValidationError } from '@formspree/react';
 import { 
   Bot, 
+  Brain, 
+  BarChart3, 
   ArrowRight, 
   ChevronDown,
   Users,
   MessageSquare,
   TrendingUp,
+  CheckCircle2,
   Target,
   Clock,
   Zap,
   Sun,
-  Moon
+  Moon,
+  Menu,
+  X
 } from 'lucide-react';
 
 function FadeInWhenVisible({ children }: { children: React.ReactNode }) {
@@ -46,10 +51,11 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [state, handleSubmit] = useForm("xgegklep");
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedQuestions, setExpandedQuestions] = useState<Record<string, boolean>>({});
 
   const companies = [
-    "Delve", "TechiesMatch", "BackendIm", "ReconXI", "Telex", "Telin", "GenZ ad"
+    "Delve", "TechiesMatch", "BackendIm", "ReconXI", "Telex", "Telin", "GenZ"
   ];
 
   const benefits = [
@@ -154,6 +160,10 @@ function App() {
     document.documentElement.classList.toggle('dark');
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <div className={`min-h-screen ${isDarkMode ? 'dark bg-gray-900' : 'bg-white'}`}>
       {/* Navigation */}
@@ -164,6 +174,8 @@ function App() {
               <Bot className="h-8 w-8 text-blue-600" />
               <span className={`ml-2 text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Voxview</span>
             </div>
+            
+            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               <a href="#features" className={`${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}>Features</a>
               <a href="#how-it-works" className={`${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}>How It Works</a>
@@ -171,6 +183,7 @@ function App() {
               <button
                 onClick={toggleDarkMode}
                 className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+                aria-label="Toggle dark mode"
               >
                 {isDarkMode ? <Sun className="h-5 w-5 text-gray-300" /> : <Moon className="h-5 w-5 text-gray-600" />}
               </button>
@@ -181,7 +194,74 @@ function App() {
                 Join Waitlist
               </button>
             </div>
+
+            {/* Mobile Menu Button */}
+            <div className="flex md:hidden items-center space-x-4">
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+                aria-label="Toggle dark mode"
+              >
+                {isDarkMode ? <Sun className="h-5 w-5 text-gray-300" /> : <Moon className="h-5 w-5 text-gray-600" />}
+              </button>
+              <button
+                onClick={toggleMobileMenu}
+                className={`p-2 rounded-lg ${isDarkMode ? 'text-white hover:bg-gray-800' : 'text-gray-600 hover:bg-gray-100'}`}
+                aria-label="Toggle mobile menu"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
+              </button>
+            </div>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className={`md:hidden ${isDarkMode ? 'bg-gray-900' : 'bg-white'} py-4`}
+            >
+              <div className="flex flex-col space-y-4">
+                <a 
+                  href="#features" 
+                  className={`px-4 py-2 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
+                  onClick={toggleMobileMenu}
+                >
+                  Features
+                </a>
+                <a 
+                  href="#how-it-works" 
+                  className={`px-4 py-2 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
+                  onClick={toggleMobileMenu}
+                >
+                  How It Works
+                </a>
+                <a 
+                  href="#early-access" 
+                  className={`px-4 py-2 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
+                  onClick={toggleMobileMenu}
+                >
+                  Early Access
+                </a>
+                <div className="px-4">
+                  <button 
+                    onClick={() => {
+                      setIsModalOpen(true);
+                      toggleMobileMenu();
+                    }}
+                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition shadow-lg"
+                  >
+                    Join Waitlist
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          )}
         </div>
       </nav>
 
