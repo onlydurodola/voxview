@@ -3,44 +3,36 @@ on:
   workflow_run:
     workflows: ["Node.js CI - Build & Test"]
     types:
-      - completed 
+      - completed
     branches:
-      - main 
-permissions:
-  actions: read
-  contents: read
-  
+      - main
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     if: github.event.workflow_run.conclusion == 'success'
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
-
+      - name: Wait for artifact availability
+        run: sleep 10  # Wait 10 seconds to ensure artifact is ready
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
           name: production-files
           run-id: ${{ github.event.workflow_run.id }}
           path: ./dist
-          repository: onlydurodola/voxview
-        
-
       - name: Deploy to EC2
         uses: easingthemes/ssh-deploy@v5.1.0
         with:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           REMOTE_HOST: ${{ secrets.EC2_HOST }}
           REMOTE_USER: ${{ secrets.EC2_USERNAME }}
-          SOURCE: "dist/" 
+          SOURCE: "dist/"
           TARGET: ${{ secrets.EC2_TARGET_DIR }}
           ARGS: '--delete'
-
       - name: Run post-deploy commands
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -49,7 +41,5 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             echo "Deployment complete. Running post-deploy steps..."
-            # --- Customize commands for YOUR server setup ---
-            # Example: Restart Nginx
-             sudo systemctl restart nginx
+            sudo systemctl restart nginx
             echo "Post-deploy steps finished."
