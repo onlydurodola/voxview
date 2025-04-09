@@ -3,15 +3,12 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useForm, ValidationError } from '@formspree/react';
 import { 
-  Bot, 
-  Brain, 
-  BarChart3, 
+  Bot,
   ArrowRight, 
   ChevronDown,
   Users,
   MessageSquare,
   TrendingUp,
-  CheckCircle2,
   Target,
   Clock,
   Zap,
