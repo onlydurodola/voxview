@@ -1,29 +1,31 @@
-name: Deploy to AWS EC2 (Vite Project)
-
+name: Deploy to AWS EC2
 on:
-  push:
-    branches: 
-      - main
+  workflow_run:
+    workflows: ["Node.js CI - Build & Test"]
+    types:
+      - completed 
+    branches:
+      - main 
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    if: github.event.workflow_run.conclusion == 'success'
+
     steps:
+
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
         with:
-          node-version: 20.x
-          cache: 'npm' 
+          ref: ${{ github.event.workflow_run.head_sha }}
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build application
-        run: npm run build
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-files
+          run-id: ${{ github.event.workflow_run.id }}
+          path: ./dist
 
       - name: Deploy to EC2
         uses: easingthemes/ssh-deploy@v5.1.0
@@ -31,9 +33,8 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           REMOTE_HOST: ${{ secrets.EC2_HOST }}
           REMOTE_USER: ${{ secrets.EC2_USERNAME }}
-          
-          SOURCE: "dist/"
-          TARGET: ${{ secrets.EC2_TARGET_DIR }} 
+          SOURCE: "dist/" 
+          TARGET: ${{ secrets.EC2_TARGET_DIR }}
           ARGS: '--delete'
 
       - name: Run post-deploy commands
@@ -44,11 +45,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             echo "Deployment complete. Running post-deploy steps..."
-            # --- Add your EC2 server commands below ---
+            # --- Customize commands for YOUR server setup ---
             # Example: Restart Nginx
              sudo systemctl restart nginx
-            # Example: If using PM2 for a Node.js server (unlikely for static Vite build)
-            # pm2 reload yourappname
-            # Example: Set permissions if needed for the web server user
-            # sudo chown -R www-data:www-data ${{ secrets.EC2_TARGET_DIR }}
             echo "Post-deploy steps finished."
